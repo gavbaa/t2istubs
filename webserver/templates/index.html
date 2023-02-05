@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>t2i</title>
+    <script>
+      function submitForm() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/send_job", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(
+          JSON.stringify({
+            prompt: document.getElementById("prompt").value,
+            text2: document.getElementById("text2").value,
+          })
+        );
+        return false;
+      }
+
+      function setup() {
+        document.forms[0].onsubmit = submitForm;
+      }
+    </script>
+  </head>
+  <body onload="setup()">
+    <h1>t2i</h1>
+    <form>
+      <div>
+        <label for="prompt">Prompt</label>
+        <input type="text" name="prompt" id="prompt" />
+      </div>
+      <div>
+        <label for="text2">Text</label>
+        <input type="text" name="text2" id="text2" />
+      </div>
+      <input type="submit" value="Submit" />
+    </form>
+    <div id="result"></div>
+  </body>
+</html>
